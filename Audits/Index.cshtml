@@ -1,0 +1,67 @@
+﻿@page
+@model Test3.Pages.Audits.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Audit[0].Save)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Audit[0].Edit)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Audit)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Save)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Edit)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.AID">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.AID">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.AID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@if (User.IsInRole("admin"))
+{
+    <section>
+        <h1>Welcome, Admin!</h1>
+    </section>
+}
+else if (User.IsInRole("slt"))
+{
+    <section>
+        <h1>Welcome,Slt!</h1>
+    </section>
+}
+else if (User.IsInRole("deptHead"))
+{
+    <section>
+        <h1>Welcome, DeptHead!</h1>
+    </section>
+}
+else
+{
+    <section>
+        <h1>Welcome</h1>
+    </section>
+}

@@ -1,0 +1,64 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<style>
+    img.rr {
+        margin-left: auto;
+        margin-right: auto;
+        height: 1200px;
+        width: 1200px;
+    }
+</style>
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container">
+            <a class="navbar-brand" asp-area="" asp-page="/Index">Test_3</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <partial name="_LoginPartial" />
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="Employees/Index">Employees</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="Departments/Index">Departments</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="Audits/Index">Audits</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<img class="rr" src="https://www.navistar.com/StaticFiles/navistar/PromoImages/navistar_home_hero.jpg" alt=" Text" />
+@if (User.IsInRole("Admin"))
+{
+    <section>
+        <h1>Welcome, Admin!</h1>
+    </section>
+}
+else if (User.IsInRole("Slt"))
+{
+    <section>
+        <h1>Welcome,Slt!</h1>
+    </section>
+}
+else if (User.IsInRole("DeptHead"))
+{
+    <section>
+        <h1>Welcome, DeptHead!</h1>
+    </section>
+}
+else
+{
+    <section>
+        <h1>Welcome</h1>
+    </section>
+}

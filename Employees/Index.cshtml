@@ -1,0 +1,105 @@
+﻿@page
+@model Test3.Pages.Employees.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<section>
+    <label asp-for="OpenCount"> </label>
+    <label asp-for="ClosedCount"> </label>
+
+</section>
+<form>
+    <input type="text" name="searchInput" value="Search...." />
+    <input type="submit" value="Search" />
+
+</form>
+<form>
+    <input asp-for="searchDate" />
+    <input type="submit" value="Search" />
+
+</form>
+<section>
+    <h1>@Model.OpenCount</h1>
+    <h1>@Model.ClosedCount</h1>
+
+</section>
+<form>
+    <input type="submit" value="Search"/>
+</form>
+<form>
+    <input type="submit" value="Search" />
+
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee[0].FN)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee[0].LN)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee[0].Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee[0].Approved)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee[0].ApprPos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee[0].ReleaseDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee[0].Departments)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee[0].Audits)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Employees) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Approved)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApprPos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReleaseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Departments.DID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Audits.AID)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
